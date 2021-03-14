@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8A07486D-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.UnitTests", "test\Blazor.UnitTests\Blazor.UnitTests.csproj", "{8B44CB32-C700-4CB5-9AB4-F5D491DC46A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Services", "Blazor.Services\Blazor.Services.csproj", "{5A26FE30-985C-4A38-80FE-FBD9D244B418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Services", "Blazor.Services\Blazor.Services.csproj", "{5A26FE30-985C-4A38-80FE-FBD9D244B418}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
