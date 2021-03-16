@@ -1,0 +1,50 @@
+﻿@inherits TestComponentBase
+
+<SnapshotTest Description="Render correctly">
+    <TestInput>
+        <Counter></Counter>
+    </TestInput>
+    <ExpectedOutput>
+        <h1>Counter</h1>
+        <p>Current count: 0</p>
+        <button class="btn-primary btn">Click me</button>
+    </ExpectedOutput>
+</SnapshotTest>
+
+
+
+<Fixture Test="IncrementCounterWhenClicked">
+    <ComponentUnderTest>
+        <Counter></Counter>
+    </ComponentUnderTest>
+    <Fragment Id="@idInitialRender">
+        <h1>Counter</h1>
+        <p>Current count: 0</p>
+        <button class="btn-primary btn">Click me</button>
+    </Fragment>
+    <Fragment Id="AfterClick">
+        <h1>Counter</h1>
+        <p>Current count: 1</p>
+        <button class="btn-primary btn">Click me</button>
+    </Fragment>
+
+    @code
+    {
+        const string idInitialRender = "InitialRender";
+
+        void IncrementCounterWhenClicked(Fixture fixture)
+        {
+            var cut = fixture.GetComponentUnderTest<Counter>();
+            var initialRender = fixture.GetFragment(idInitialRender);
+            var afterClick = fixture.GetFragment("AfterClick");
+
+            cut.MarkupMatches(initialRender);
+            cut.Find(cssSelector: "button").Click();
+            cut.MarkupMatches(afterClick);
+        }
+    }
+
+</Fixture>
+
+
+
