@@ -1,0 +1,51 @@
+﻿@inherits TestComponentBase
+
+<SnapshotTest Description="Render correctly"
+              Setup="RegisterWeatherService">
+    <TestInput>
+        <FetchData />
+    </TestInput>
+    <ExpectedOutput>
+        <h1>Weather forecast</h1>
+        <p>This component demonstrates fetching data from the server.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td diff:ignore></td>
+                    <td>27</td>
+                    <td diff:ignore></td>
+                    <td>Warm</td>
+                </tr>
+                <tr>
+                    <td diff:ignore></td>
+                    <td>-6</td>
+                    <td diff:ignore></td>
+                    <td>Freezing</td>
+                </tr>
+            </tbody>
+        </table>
+    </ExpectedOutput>
+
+    @code {
+        void RegisterWeatherService(SnapshotTest fixture)
+        {
+            var data = new (string summary, int temp)[]
+            {
+                ("Warm", 27),
+                ("Freezing", -6)
+            };
+            var mock = new ForecastMockFactory().GenerateMockForecastServiceWith(data);
+            fixture.Services.AddSingleton<IWeatherService>(mock.Object);
+        }
+    }
+
+
+</SnapshotTest>

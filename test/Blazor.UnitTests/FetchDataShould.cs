@@ -4,12 +4,8 @@ using Blazor.UnitTests.Helpers;
 using Bunit;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using System.Linq;
 
 namespace Blazor.UnitTests
 {
@@ -58,7 +54,7 @@ namespace Blazor.UnitTests
 
       var rows = cut.FindAll("tbody tr");
       int i = 0;
-      foreach(var row in rows)
+      foreach (var row in rows)
       {
         (string summary, int temp) = data[i];
         row.MarkupMatches($@"
