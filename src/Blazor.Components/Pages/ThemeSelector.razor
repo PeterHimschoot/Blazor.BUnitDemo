@@ -1,0 +1,17 @@
+﻿<CascadingValue Value="@CurrentTheme">
+    @ChildContent
+</CascadingValue>
+
+@code {
+
+    [Parameter]
+    [MaybeNull]
+    public RenderFragment ChildContent { get; set; }
+
+    public ThemeInfo CurrentTheme { get; private set; } = ThemeInfos.Default;
+
+    public void DefaultTheme() => CurrentTheme = ThemeInfos.Default;
+    public void GreenTheme() => CurrentTheme = ThemeInfos.Green;
+    public void RedTheme() => CurrentTheme = ThemeInfos.Red;
+
+}

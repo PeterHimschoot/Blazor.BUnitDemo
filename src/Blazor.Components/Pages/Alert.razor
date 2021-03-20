@@ -31,6 +31,7 @@
   public EventCallback<bool> ShowChanged { get; set; }
 
   [Parameter]
+  [AllowNull]
   public RenderFragment ChildContent { get; set; }
 
   public void Dismiss()

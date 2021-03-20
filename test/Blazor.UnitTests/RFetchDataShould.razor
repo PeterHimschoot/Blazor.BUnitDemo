@@ -33,7 +33,6 @@
             </tbody>
         </table>
     </ExpectedOutput>
-
     @code {
         void RegisterWeatherService(SnapshotTest fixture)
         {
@@ -46,6 +45,4 @@
             fixture.Services.AddSingleton<IWeatherService>(mock.Object);
         }
     }
-
-
 </SnapshotTest>

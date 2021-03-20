@@ -29,7 +29,7 @@ namespace Blazor.UnitTests.Helpers
       return mock;
     }
 
-    private IEnumerable<WeatherForecast> GenerateForecastsWith(params (string summary, int temp)[] data)
+    public IEnumerable<WeatherForecast> GenerateForecastsWith(params (string summary, int temp)[] data)
     {
       DateTime date = DateTime.Now;
       foreach ((string summary, int temp) in data)

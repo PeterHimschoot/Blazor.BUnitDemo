@@ -1,7 +1,6 @@
 using Blazor.Components.Pages;
 using Bunit;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Blazor.UnitTests
@@ -56,11 +55,11 @@ namespace Blazor.UnitTests
 
       // This comparison will fail because the classes of the button are in the wrong order
 
-//    cut.Markup.Should().Be(@"<h1>Counter</h1>
+      //    cut.Markup.Should().Be(@"<h1>Counter</h1>
 
-//<p>Current count: 1</p>
+      //<p>Current count: 1</p>
 
-//<button class=""btn-primary btn"" blazor:onclick=""1"">Click me</button>");
+      //<button class=""btn-primary btn"" blazor:onclick=""1"">Click me</button>");
     }
 
 

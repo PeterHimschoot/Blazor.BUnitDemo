@@ -1,0 +1,32 @@
+﻿@page "/templated"
+
+@inject IWeatherService ForecastService
+
+<h3>Templated Components</h3>
+
+<TemplatedList Loader="LoadForecasts" ListGroupClass="orders-list" >
+  <LoadingContent>Loading...</LoadingContent>
+  <EmptyContent>
+    <h2>No forecasts</h2>
+  </EmptyContent>
+  <ItemContent Context="item">
+    <div class="col">
+      Date: 
+      <span>@item.Date.ToShortDateString()</span>
+    </div>
+    <div class="col">
+      Summary: <strong>@item.Summary</strong>
+    </div>
+    <div class="col flex-grow-0">
+      Temp:
+      <span>@item.TemperatureC</span>
+    </div>
+  </ItemContent>
+</TemplatedList>
+
+@code {
+
+  public async ValueTask<IEnumerable<WeatherForecast>> LoadForecasts()
+    => await ForecastService.GetForecasts(DateTime.Now);
+
+}

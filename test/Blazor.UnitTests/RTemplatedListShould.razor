@@ -1,0 +1,144 @@
+﻿@inherits TestComponentBase
+
+<SnapshotTest Description="Show Loading Content">
+    <TestInput>
+        <TemplatedList Loader="LoadNullForecasts"
+                       ListGroupClass="orders-list">
+            <LoadingContent>Loading...</LoadingContent>
+            <EmptyContent>
+                <h2>No forecasts</h2>
+            </EmptyContent>
+            <ItemContent Context="item">
+                <div class="col">
+                    Date:
+                    <span>@item.Date.ToShortDateString()</span>
+                </div>
+                <div class="col">
+                    Summary: <strong>@item.Summary</strong>
+                </div>
+                <div class="col flex-grow-0">
+                    Temp:
+                    <span>@item.TemperatureC</span>
+                </div>
+            </ItemContent>
+        </TemplatedList>
+    </TestInput>
+    <ExpectedOutput>
+        Loading...
+    </ExpectedOutput>
+    @code {
+        public ValueTask<IEnumerable<WeatherForecast>> LoadNullForecasts()
+        => new ValueTask<IEnumerable<WeatherForecast>>(result: null);
+    }
+</SnapshotTest>
+
+<SnapshotTest Description="Show Empty Content">
+    <TestInput>
+        <TemplatedList Loader="LoadEmptyForecasts"
+                       ListGroupClass="orders-list">
+            <LoadingContent>Loading...</LoadingContent>
+            <EmptyContent>
+                <h2>No forecasts</h2>
+            </EmptyContent>
+            <ItemContent Context="item">
+                <div class="col">
+                    Date:
+                    <span>@item.Date.ToShortDateString()</span>
+                </div>
+                <div class="col">
+                    Summary: <strong>@item.Summary</strong>
+                </div>
+                <div class="col flex-grow-0">
+                    Temp:
+                    <span>@item.TemperatureC</span>
+                </div>
+            </ItemContent>
+        </TemplatedList>
+    </TestInput>
+    <ExpectedOutput>
+        <h2>No forecasts</h2>
+    </ExpectedOutput>
+    @code {
+        public ValueTask<IEnumerable<WeatherForecast>> LoadEmptyForecasts()
+        => new ValueTask<IEnumerable<WeatherForecast>>(result: Array.Empty<WeatherForecast>());
+    }
+</SnapshotTest>
+
+<SnapshotTest Description="Show Forecasts Content">
+    <TestInput>
+        <TemplatedList Loader="LoadForecasts"
+                       ListGroupClass="orders-list">
+            <LoadingContent>Loading...</LoadingContent>
+            <EmptyContent>
+                <h2>No forecasts</h2>
+            </EmptyContent>
+            <ItemContent Context="item">
+                <div class="col">
+                    Date:
+                    <span>@item.Date.ToShortDateString()</span>
+                </div>
+                <div class="col">
+                    Summary: <strong>@item.Summary</strong>
+                </div>
+                <div class="col flex-grow-0">
+                    Temp:
+                    <span>@item.TemperatureC</span>
+                </div>
+            </ItemContent>
+        </TemplatedList>
+    </TestInput>
+    <ExpectedOutput>
+        <div class="list-group orders-list">
+            <div class="list-group-item">
+                <div class="col">
+                    Date:
+                    <span>@forecasts[0].Date.ToShortDateString()</span>
+                </div>
+                <div class="col">
+                    Summary: <strong>@forecasts[0].Summary</strong>
+                </div>
+                <div class="col flex-grow-0">
+                    Temp:
+                    <span>@forecasts[0].TemperatureC</span>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="col">
+                    Date:
+                    <span>@forecasts[1].Date.ToShortDateString()</span>
+                </div>
+                <div class="col">
+                    Summary: <strong>@forecasts[1].Summary</strong>
+                </div>
+                <div class="col flex-grow-0">
+                    Temp:
+                    <span>@forecasts[1].TemperatureC</span>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="col">
+                    Date:
+                    <span>@forecasts[2].Date.ToShortDateString()</span>
+                </div>
+                <div class="col">
+                    Summary: <strong>@forecasts[2].Summary</strong>
+                </div>
+                <div class="col flex-grow-0">
+                    Temp:
+                    <span>@forecasts[2].TemperatureC</span>
+                </div>
+            </div>
+        </div>
+    </ExpectedOutput>
+    @code {
+        private WeatherForecast[] forecasts;
+
+        public ValueTask<IEnumerable<WeatherForecast>> LoadForecasts()
+        {
+            forecasts = new ForecastMockFactory()
+            .GenerateForecastsWith(("Warm", 27), ("Freezing", -6), ("Cold", 0))
+            .ToArray();
+            return new ValueTask<IEnumerable<WeatherForecast>>(result: forecasts);
+        }
+    }
+</SnapshotTest>

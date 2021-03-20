@@ -1,0 +1,43 @@
+﻿@inherits TestComponentBase
+
+<Fixture Test="IncrementCounterWhenClicked">
+    <ComponentUnderTest>
+        <TwoWayCounter CurrentCount="0" Increment="1"></TwoWayCounter>
+    </ComponentUnderTest>
+    <Fragment Id="AfterClick">
+        <h1>Counter</h1>
+        <p>Current count: 1</p>
+        <button class="btn-primary btn">Click me</button>
+    </Fragment>
+    @code
+    {
+        void IncrementCounterWhenClicked(Fixture fixture)
+        {
+            var cut = fixture.GetComponentUnderTest<TwoWayCounter>();
+            var afterClick = fixture.GetFragment("AfterClick");
+            cut.Find(cssSelector: "button").Click();
+            cut.MarkupMatches(afterClick);
+        }
+    }
+</Fixture>
+
+<Fixture Test="IncrementCounterWithIncrementWhenClicked">
+    <ComponentUnderTest>
+        <TwoWayCounter CurrentCount="0" Increment="3"></TwoWayCounter>
+    </ComponentUnderTest>
+    <Fragment Id="AfterClick">
+        <h1>Counter</h1>
+        <p>Current count: 3</p>
+        <button class="btn-primary btn">Click me</button>
+    </Fragment>
+    @code
+    {
+        void IncrementCounterWithIncrementWhenClicked(Fixture fixture)
+        {
+            var cut = fixture.GetComponentUnderTest<TwoWayCounter>();
+            var afterClick = fixture.GetFragment("AfterClick");
+            cut.Find(cssSelector: "button").Click();
+            cut.MarkupMatches(afterClick);
+        }
+    }
+</Fixture>

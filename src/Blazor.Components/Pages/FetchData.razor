@@ -35,6 +35,7 @@ else
 }
 
 @code {
+    [AllowNull]
     public IEnumerable<WeatherForecast> Forecasts { get; set; }
 
     protected override async Task OnInitializedAsync()

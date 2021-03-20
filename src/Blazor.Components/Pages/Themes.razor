@@ -1,0 +1,34 @@
+﻿@page "/themes"
+
+<h3>Themes</h3>
+
+<ThemeSelector @ref="ThemeSelector">
+    <CounterWithTheme />
+</ThemeSelector>
+
+<br/>
+
+<button class="btn btn-primary" @onclick="SelectNextTheme">Next</button>
+
+@code {
+
+    [AllowNull]
+    private ThemeSelector ThemeSelector { get; set; }
+
+    public void SelectNextTheme()
+    {
+        if (ThemeSelector.CurrentTheme == ThemeInfos.Default)
+        {
+            ThemeSelector.GreenTheme();
+
+        }
+        else if (ThemeSelector.CurrentTheme == ThemeInfos.Green)
+        {
+            ThemeSelector.RedTheme();
+        }
+        else
+        {
+            ThemeSelector.DefaultTheme();
+        }
+    }
+}

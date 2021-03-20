@@ -1,12 +1,6 @@
 ﻿using Blazor.Components.Pages;
 using Blazor.Components.Shared;
 using Bunit;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Blazor.UnitTests
@@ -20,7 +14,7 @@ namespace Blazor.UnitTests
         parameters =>
           parameters.Add(alert => alert.Show, false)
                     .AddChildContent<SurveyPrompt>(
-                       promptParameters => 
+                       promptParameters =>
                          promptParameters.Add(prompt => prompt.Title, "Hello")
             )
         );
